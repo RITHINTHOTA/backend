@@ -32,16 +32,16 @@ pipeline {
         stage('Build') {
             steps {
               sh """
-              zip -q -r backend-${appVersion}.zip * -x Jenkinsfile -x backend-${appVersion}.zip -x testfile
+              zip -q -r backend-${appVersion}.zip * -x Jenkinsfile -x backend-${appVersion}.zip
                ls -ltr
               """  
             }
         }
     }   
     post{
-        //always {
-          //deleteDir()
-        //}
+        always {
+          deleteDir()
+        }
         success{
              echo "It will run when the pipeline is success"
         }
