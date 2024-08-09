@@ -29,10 +29,18 @@ pipeline {
                 """
             }
         }
+        stage('Build') {
+            steps {
+              sh """
+              zip -r backend-${appVersion}.zip * -x Jenkinsfile -x backend-${appVersion}.zip
+               ls -ltr
+              """  
+            }
+        }
     }   
     post{
         always {
-        deleteDir()
+          deleteDir()
         }
         success{
              echo "It will run when the pipeline is success"
