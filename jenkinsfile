@@ -39,9 +39,9 @@ pipeline {
         }
     }   
     post{
-        always {
-          deleteDir()
-        }
+        //always {
+          //deleteDir()
+        //}
         success{
              echo "It will run when the pipeline is success"
         }
