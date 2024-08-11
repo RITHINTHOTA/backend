@@ -9,7 +9,7 @@ pipeline {
     }
     environment {
         def appVersion = ''
-        nexusUrl = 'nexus.rithinexpense.online'
+        nexusUrl = 'nexus.rithinexpense.online:8081'
     }
     stages {
         stage ('read the version'){
