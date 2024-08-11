@@ -24,7 +24,7 @@ pipeline {
         stage('Install dependencies'){
             steps {
                 sh """
-                 npm install
+                 npm install  
                  ls -ltr
                  echo "application version is: $appVersion"
                 """
@@ -38,6 +38,7 @@ pipeline {
               """  
             }
         }
+        // this stage is to push the created zip file to our created nexus repository
         stage('Nexus Artifact Uploader') {
             steps {
                script {
