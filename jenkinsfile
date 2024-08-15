@@ -38,6 +38,18 @@ pipeline {
               """  
             }
         }
+        stage('Sonar Scan'){
+            environment {
+                scannerHome = tool 'sonar' //referring scanner CLI
+            }
+            steps {
+                script {
+                    withSonarQubeEnv('sonar') { //referring sonar server
+                        sh "${scannerHome}/bin/sonar-scanner"
+                    }
+                }
+            }
+        }
         // this stage is to push the created zip file to our created nexus repository
         stage('Nexus Artifact Uploader') {
             steps {
@@ -68,18 +80,6 @@ pipeline {
                         string(name: 'appVersion', value: "${appVersion}")
                     ]
                     build job: 'backend-deploy', parameters: params, wait: false
-                }
-            }
-        }
-        stage('Sonar Scan'){
-            environment {
-                scannerHome = tool 'sonar' //referring scanner CLI
-            }
-            steps {
-                script {
-                    withSonarQubeEnv('sonar') { //referring sonar server
-                        sh "${scannerHome}/bin/sonar-scanner"
-                    }
                 }
             }
         }
