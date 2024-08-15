@@ -82,7 +82,8 @@ pipeline {
                     }
                 }
             }
-    }   
+        }
+    }
     post{
         always {
           deleteDir()
